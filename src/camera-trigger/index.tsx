@@ -4,13 +4,16 @@ import './styles.scss'
 
 const CameraTrigger = (props: Props) => {
     const cameraInput: any = useRef()
-    const change: (event: any) => void = useCallback((e) => {
-        const imgFile = e.target.files[0]
-        const formData = new FormData()
+    const {onChange} = props
 
-        formData.append('photo', imgFile)
-        console.log(formData.get('photo'))
-    }, [])
+    const change: (event: any) => void = useCallback((e) => {
+        if (!onChange) {
+            return
+        }
+
+        const imgFile: File = e.target.files[0]
+        onChange(imgFile)
+    }, [onChange])
 
     const openCamera: () => void = useCallback(() => cameraInput.current.click(), [])
     const classes = 'c-camera-trigger'
@@ -24,7 +27,8 @@ const CameraTrigger = (props: Props) => {
 }
 
 type Props = {
-    onClick?: () => void
+    onClick?: () => void,
+    onChange?: (file: File) => void,
 }
 
 export default CameraTrigger

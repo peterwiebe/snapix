@@ -1,0 +1,16 @@
+@import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/solid.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/brands.css";
+
+.c-camera-trigger {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    font-size: 32px;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}

@@ -13,4 +13,9 @@
     border-radius: 50%;
     padding: 0;
     margin: 0;
+    z-index: 100;
+
+    &:focus {
+        outline: none;
+    }
 }

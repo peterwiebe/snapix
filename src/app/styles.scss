@@ -1,0 +1,12 @@
+.c-app__photo {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    visibility: visible;
+    z-index: 10;
+    width: 100%;
+
+    &--hidden {
+        visibility: hidden;
+    }
+}

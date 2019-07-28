@@ -4,7 +4,7 @@ import './styles.scss'
 
 const CameraTrigger = (props: Props) => {
     const cameraInput: any = useRef()
-    const {onChange} = props
+    const {onChange, onClick} = props
 
     const change: (event: any) => void = useCallback((e) => {
         if (!onChange) {
@@ -15,11 +15,10 @@ const CameraTrigger = (props: Props) => {
         onChange(imgFile)
     }, [onChange])
 
-    const openCamera: () => void = useCallback(() => cameraInput.current.click(), [])
     const classes = 'c-camera-trigger'
 
     return (
-        <button className={classes} onClick={openCamera}>
+        <button className={classes} onClick={onClick}>
             <Icon name="fas fa-camera" />
             <input ref={cameraInput} hidden type="file" accept="image/*" capture="camera" onChange={change}/>
         </button>

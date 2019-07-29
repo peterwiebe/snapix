@@ -9,6 +9,8 @@ const App = () => {
     const photoCanvas = useRef<HTMLCanvasElement>(null)
     const [isPhoto, setIsPhoto] = useState(false)
     const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D | null>(null)
+    const [scale, setScale] = useState({})
+    console.log(scale)
 
     const onChange: (file: File) => void = useCallback((file) => {
         const formData = new FormData()
@@ -51,12 +53,33 @@ const App = () => {
         }
         navigator.mediaDevices.getUserMedia(constraints)
            .then(setCameraStream)
+           .then(scaleCanvas)
     }
 
     function setCameraStream(stream: any) {
         if (cameraStream.current) {
-            cameraStream.current.srcObject = stream //
+            cameraStream.current.srcObject = stream
         }
+    }
+/**
+ * Scale the cameraStream so the displayed video is full height
+ */
+    function scaleCanvas() {
+        setTimeout(() => {
+        if (cameraStream.current) {
+                const {clientHeight, clientWidth} = document.documentElement
+                const {
+                    videoHeight: cameraStreamHeight,
+                    videoWidth: cameraStreamWidth
+                } = cameraStream.current
+
+                const heightScale = cameraStreamHeight * (clientWidth / cameraStreamWidth)
+                const widthScale = cameraStreamWidth * (clientHeight / cameraStreamHeight)
+                const scaleFactor = cameraStreamWidth > cameraStreamHeight ? clientHeight / heightScale : clientWidth / widthScale
+
+                setScale({transform: `scale(${scaleFactor})`})
+            }
+        }, 1000)
     }
 
     useEffect(requestCamera, [])
@@ -69,8 +92,8 @@ const App = () => {
 
     return (
         <Layout>
-            <canvas className={photoClasses} ref={photoCanvas} height={240}/>
-            <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay playsInline/>
+            <canvas className={photoClasses} ref={photoCanvas} height={240} />
+            <video ref={cameraStream} style={{...scale, height:'100vh', width: '100vw'}} autoPlay playsInline/>
             <CameraTrigger onChange={onChange} onClick={capturePhoto} />
         </Layout>
     )

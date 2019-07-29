@@ -75,7 +75,7 @@ const App = () => {
     return (
         <Layout>
             <canvas className={photoClasses} ref={photoCanvas}/>
-            <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay/>
+            <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay playsInline/>
             <CameraTrigger onChange={onChange} onClick={capturePhoto} />
         </Layout>
     )

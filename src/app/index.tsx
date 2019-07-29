@@ -26,6 +26,11 @@ const App = () => {
         if (canvasContext && photoCanvas.current && cameraStream.current) {
             const {width, height} = photoCanvas.current
 
+            console.log(
+                cameraStream.current.videoHeight,
+                cameraStream.current.videoWidth
+                )
+
             if (!isPhoto ) {
                 canvasContext.drawImage(cameraStream.current, 0, 0, width, height)
                 setIsPhoto(true)
@@ -47,9 +52,6 @@ const App = () => {
             audio: false,
             video: {
                 facingMode: "environment"
-                // facingMode: {
-                //     exact: "environment"
-                // }
             }
         }
         navigator.mediaDevices.getUserMedia(constraints)
@@ -58,7 +60,7 @@ const App = () => {
 
     function setCameraStream(stream: any) {
         if (cameraStream.current) {
-            cameraStream.current.srcObject = stream //
+            cameraStream.current.srcObject = stream
         }
     }
 
@@ -73,7 +75,7 @@ const App = () => {
     return (
         <Layout>
             <canvas className={photoClasses} ref={photoCanvas}/>
-            <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay playsInline/>
+            <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay/>
             <CameraTrigger onChange={onChange} onClick={capturePhoto} />
         </Layout>
     )

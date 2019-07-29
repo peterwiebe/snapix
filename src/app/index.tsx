@@ -43,7 +43,15 @@ const App = () => {
     }
 
     function requestCamera() {
-        const constraints = {audio: false, video: true}
+        const constraints = {
+            audio: false,
+            video: {
+                facingMode: "environment"
+                // facingMode: {
+                //     exact: "environment"
+                // }
+            }
+        }
         navigator.mediaDevices.getUserMedia(constraints)
            .then(setCameraStream)
     }
@@ -64,7 +72,7 @@ const App = () => {
 
     return (
         <Layout>
-            <canvas className={photoClasses} ref={photoCanvas} height={240}/>
+            <canvas className={photoClasses} ref={photoCanvas}/>
             <video ref={cameraStream} style={{height:'100vh', width: '100vw'}} autoPlay playsInline/>
             <CameraTrigger onChange={onChange} onClick={capturePhoto} />
         </Layout>

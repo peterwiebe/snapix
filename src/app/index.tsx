@@ -26,7 +26,6 @@ const App = () => {
     // }, [])
 
     function capturePhoto() {
-        console.log('triggered')
         if (canvasContext && photoCanvas.current && cameraStream.current) {
             const {width, height} = photoCanvas.current
             const {videoWidth: cW, videoHeight: cH} = cameraStream.current
@@ -41,7 +40,6 @@ const App = () => {
             const sourceY = isScaledByHeight ? 0 : (cH-(cH/sc))/2
             const sourceWidth = isScaledByHeight ? Math.round(cW/sc) : cW
             const sourceHeight = isScaledByHeight ? cH : Math.round(cH/sc)
-
 
             if (!isPhoto ) {
                 canvasContext.drawImage(cameraStream.current, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, width, height)
@@ -137,7 +135,7 @@ const App = () => {
     return (
         <Layout>
             <div style={{display: 'flex', justifyContent: 'center', overflow: 'hidden'}}>
-            <canvas className={photoClasses} ref={photoCanvas} height={dimensions.y} width={dimensions.x} />
+            <canvas className={photoClasses} ref={photoCanvas} height={553} width={375} />
             <video ref={cameraStream} style={{...scale, height:'100vh', width: '100vw'}} autoPlay playsInline/>
             <CameraTrigger onChange={onChange} onClick={capturePhoto} />
             </div>

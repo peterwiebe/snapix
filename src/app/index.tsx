@@ -26,6 +26,7 @@ const App = () => {
     // }, [])
 
     function capturePhoto() {
+        console.log('triggered')
         if (canvasContext && photoCanvas.current && cameraStream.current) {
             const {width, height} = photoCanvas.current
             const {videoWidth: cW, videoHeight: cH} = cameraStream.current
@@ -112,7 +113,7 @@ const App = () => {
     useEffect(updateDimensions, [])
 
     const photoClasses = classNames('c-app__photo', {
-        hidden: isPhoto
+        'c--hidden': isPhoto
     })
 
     return (

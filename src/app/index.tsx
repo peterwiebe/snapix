@@ -106,11 +106,29 @@ const App = () => {
         setDimensions({x: clientWidth, y: clientHeight})
     }
 
+    function disableTouchZoom() {
+        document.addEventListener('touchmove', (e) => {
+            var event: any = e
+            if (event.scale !== 1) { e.preventDefault()}
+        }, false)
+
+        var lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false)
+    }
+
     useEffect(requestCamera, [])
 
     useEffect(getCanvasContext, [])
 
     useEffect(updateDimensions, [])
+
+    useEffect(disableTouchZoom, [])
 
     const photoClasses = classNames('c-app__photo', {
         'c--hidden': isPhoto

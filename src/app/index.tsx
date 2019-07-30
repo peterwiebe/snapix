@@ -40,8 +40,8 @@ const App = () => {
             const sourceY = isScaledByHeight ? 0 : (cH-(cH/sc))/2
             const sourceWidth = isScaledByHeight ? Math.round(cW/sc) : cW
             const sourceHeight = isScaledByHeight ? cH : Math.round(cH/sc)
-            console.log(canvasContext)
-            console.log(cameraStream.current)
+            console.log({sourceX, sourceY, sourceWidth, sourceHeight, width, height})
+
             if (!isPhoto ) {
                 canvasContext.drawImage(cameraStream.current, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, width, height)
                 setIsPhoto(true)

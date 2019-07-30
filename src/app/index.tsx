@@ -131,7 +131,7 @@ const App = () => {
     useEffect(disableTouchZoom, [])
 
     const photoClasses = classNames('c-app__photo', {
-        'c--hidden': isPhoto
+        'c--hidden': !isPhoto
     })
 
     return (

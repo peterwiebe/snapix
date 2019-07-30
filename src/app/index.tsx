@@ -35,7 +35,7 @@ const App = () => {
             if (scale.transform) {
                 sc = Number(scale.transform.substring(6,11))
             }
-
+            console.log({cW, cH})
             const sourceX = isScaledByHeight ? (cW-(cW/sc))/2 : 0
             const sourceY = isScaledByHeight ? 0 : (cH-(cH/sc))/2
             const sourceWidth = isScaledByHeight ? Math.round(cW/sc) : cW

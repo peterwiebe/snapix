@@ -11,7 +11,7 @@ const App = () => {
     const [isPhoto, setIsPhoto] = useState(false)
     const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D | null>(null)
     const [scale, setScale] = useState({transform: ''})
-    const [dimensions, setDimensions] = useState({x: 0, y: 0})
+    const [dimensions, setDimensions] = useState({x: 240, y: 240})
 
     const onChange: (file: File) => void = useCallback((file) => {
         const formData = new FormData()

@@ -39,7 +39,8 @@ const App = () => {
             // const sourceX = isScaledByHeight ? (cW-(cW/sc))/2 : 0
             const sourceX = 0
             const sourceY = isScaledByHeight ? 0 : (cH-(cH/sc))/2
-            const sourceWidth = isScaledByHeight ? Math.round(cW/sc) : cW
+            // const sourceWidth = isScaledByHeight ? Math.round(cW/sc) : cW
+            const sourceWidth = 480
             const sourceHeight = isScaledByHeight ? cH : Math.round(cH/sc)
             console.log({sourceX, sourceY, sourceWidth, sourceHeight, width, height})
 
